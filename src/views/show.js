@@ -11,10 +11,9 @@ export function show(configuration) {
     console.log(configuration);
 
     // convert plain HTML string into DOM elements
-    let { env, storeId, serviceURL } = configuration;
+    let { storeId } = configuration;
     let abc = process.env;
-    console.log(FIREBASE_URL)
-    console.log(abc);
+    console.log(SERVICE_URL)
 
     let modal = new tingle.modal({
         closeMethods: ['button', 'escape'],
@@ -27,10 +26,10 @@ export function show(configuration) {
         }
     });
     var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    var url = serviceURL + '/service.html?'
+    var url = SERVICE_URL + '/service.html?'
     url += "storeId=" + storeId;
-    if (env !== "") {
-        url += "&env=" + env;
+    if (ENV == "dev") {
+        url += "&env=local";
     }
     modal.setContent('<iframe id="the_iframe" height="' + (h - 75) + '" style="height: 80vh" width="100%" frameborder="0" src=' + url + '>');
     let temporary = document.createElement('div');

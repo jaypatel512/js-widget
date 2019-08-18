@@ -20,14 +20,16 @@ module.exports = (env) => {
                 new webpack.SourceMapDevToolPlugin(),
                 new copyWebpackPlugin([{ from: 'demo/' }]),
                 new webpack.DefinePlugin({
-                    FIREBASE_URL: JSON.stringify("https://myapp-staging.firebaseio.com")
+                    SERVICE_URL: JSON.stringify("//localhost:8081"),
+                    ENV: JSON.stringify("dev")
                 })
             ] :
             [
                 new webpack.optimize.UglifyJsPlugin(),
                 new copyWebpackPlugin([{ from: 'demo/' }]),
                 new webpack.DefinePlugin({
-                    FIREBASE_URL: JSON.stringify("https://myapp.firebaseio.com")
+                    SERVICE_URL: JSON.stringify("https://ddm2s7p54russ.cloudfront.net"),
+                    ENV: JSON.stringify("prod")
                 })
             ],
         module: {
