@@ -7,11 +7,14 @@ import { shouldAutoOpen } from '../services'
 let elements = [];
 let body;
 
-export function show(text) {
+export function show(configuration) {
+    console.log(configuration);
+
     // convert plain HTML string into DOM elements
-    let env = "";
-    let storeId = "123";
-    let serviceURL = "https://ddm2s7p54russ.cloudfront.net"
+    let { env, storeId, serviceURL } = configuration;
+    let abc = process.env;
+    console.log(FIREBASE_URL)
+    console.log(abc);
 
     let modal = new tingle.modal({
         closeMethods: ['button', 'escape'],
@@ -24,7 +27,7 @@ export function show(text) {
         }
     });
     var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    var url = serviceURL + "/service.html?"
+    var url = serviceURL + '/service.html?'
     url += "storeId=" + storeId;
     if (env !== "") {
         url += "&env=" + env;

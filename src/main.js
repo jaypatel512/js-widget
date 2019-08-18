@@ -1,7 +1,7 @@
 import { ping } from './services'
 import { show } from './views/show'
 
-const supportedAPI = ['init', 'show']; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
+const supportedAPI = ['init']; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
 
 /**
     The main entry of the application
@@ -28,9 +28,8 @@ function app(window) {
             if (queue[i][0].toLowerCase() == 'init') {
                 configurations = extendObject(configurations, queue[i][1]);
                 console.log('JS-Widget started', configurations);
+                apiHandler(queue[i][0], configurations);
             }
-            else
-                apiHandler(queue[i][0], queue[i][1]);
         }
     }
 
@@ -53,7 +52,7 @@ function apiHandler(api, params) {
 
     switch (api) {
         // TODO: add API implementation
-        case 'show':
+        case 'init':
             show(params);
             break;
         default:

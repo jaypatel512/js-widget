@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-var copyWebpackPlugin = require('copy-webpack-plugin');
 const bundleOutputDir = './dist';
+var copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
@@ -9,15 +9,27 @@ module.exports = (env) => {
     return [{
         entry: './src/main.js',
         output: {
-            filename: 'widget.js',
+            filename: 'blinkai.js',
             path: path.resolve(bundleOutputDir),
         },
         devServer: {
             contentBase: bundleOutputDir
         },
         plugins: isDevBuild
-            ? [new webpack.SourceMapDevToolPlugin(), new copyWebpackPlugin([{ from: 'demo/' }])]
-            : [new webpack.optimize.UglifyJsPlugin()],
+            ? [
+                new webpack.SourceMapDevToolPlugin(),
+                new copyWebpackPlugin([{ from: 'demo/' }]),
+                new webpack.DefinePlugin({
+                    FIREBASE_URL: JSON.stringify("https://myapp-staging.firebaseio.com")
+                })
+            ] :
+            [
+                new webpack.optimize.UglifyJsPlugin(),
+                new copyWebpackPlugin([{ from: 'demo/' }]),
+                new webpack.DefinePlugin({
+                    FIREBASE_URL: JSON.stringify("https://myapp.firebaseio.com")
+                })
+            ],
         module: {
             rules: [
                 { test: /\.html$/i, use: 'html-loader' },
@@ -38,3 +50,10 @@ module.exports = (env) => {
         }
     }];
 };
+
+function extendObject(a, b) {
+    for (var key in b)
+        if (b.hasOwnProperty(key))
+            a[key] = b[key];
+    return a;
+}
