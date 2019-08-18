@@ -1,7 +1,7 @@
 import { ping } from './services'
-import { show } from './views/message'
+import { show } from './views/show'
 
-const supportedAPI = ['init', 'message']; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
+const supportedAPI = ['init', 'show']; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
 
 /**
     The main entry of the application
@@ -11,7 +11,12 @@ function app(window) {
 
     // set default configurations
     let configurations = {
-        someDefaultConfiguration: false
+        color: '#EEE',
+        background: '#337AB7',
+        border: '2px solid white',
+        storeId: '123',
+        image: 'https://ddm2s7p54russ.cloudfront.net/calendar.svg',
+        autoOpenOptions: ['schedule-service.html?$']
     };
 
     // all methods that were called till now and stored in queue
@@ -48,7 +53,7 @@ function apiHandler(api, params) {
 
     switch (api) {
         // TODO: add API implementation
-        case 'message':
+        case 'show':
             show(params);
             break;
         default:

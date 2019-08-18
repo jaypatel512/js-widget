@@ -1,0 +1,137 @@
+#mblinkai {
+    box-sizing: border-box;
+    z-index:999999997;
+    font-family: sans-serif !important;
+    vertical-align: baseline;
+    max-width: 300px;
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: normal;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+#chat-head:hover {
+   transform: scale(1.1) !important; 
+} 
+
+.tingle-modal-box__content {
+    padding: 0.3rem!important;
+}
+#chat-head {
+    cursor: pointer;
+    background: #337AB7;
+    line-height: 20px;
+    font-variant: normal;
+    vertical-align: baseline;
+    height: 60px;
+    float: left;
+    border-radius: 69px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.4) 6px 6px 14px 0px;
+    transition: all 0.4s ease;
+    padding-left: 0px;
+    text-align: left;
+    color: #EEE;
+    width: 200px;
+    border: 2px solid white;
+}
+
+@-webkit-keyframes wshort {
+  0%, 20% {
+    width: 200px;
+  }
+  30%, 50% {
+    width: 60px;
+  }
+  60%, 100% {
+    width: 200px;
+  }
+}
+
+@-webkit-keyframes hide {
+  0%, 20% {
+    visibility: visible;
+  }
+  30%, 50% {
+    visibility: hidden;
+  }
+  60%, 100% {
+    visibility: visible;
+  }
+}
+
+@media (max-width: 800px) {
+    /* CSS that should be displayed if width is equal to or less than 800px goes here */
+    #chat-head {
+      -webkit-animation: wshort 20s infinite;
+    }
+
+    #chat-head-image {
+        margin: 10px 10px 10px 10px!important;
+    }
+
+    #chat-head-text {
+      -webkit-animation: hide 20s infinite;
+    }
+}
+#chat-head-online {
+    font-size: normal;
+    line-height: normal;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    vertical-align: baseline;
+    z-index: 9999999999;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    bottom: 50px;
+    background-image: linear-gradient(-180deg, #30cb00 1%, #00dbb1 100%);
+    margin: 0;
+    padding: 0;
+    border: 2px solid white;
+    animation: blinker 0.3s ease-in-out infinite alternate;
+}
+@keyframes blinker {
+  from { opacity: 1; }
+  to { opacity: 0.2; }
+}
+#chat-head-image svg {
+  color: #EEE;
+}
+#chat-head-image {
+    overflow: hidden;
+    vertical-align: bottom;
+    font-size: normal;
+    line-height: normal;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    margin: 10px 10px 10px 14px;
+    border: 0;
+    height: 40px;
+    width: 40px;
+    float: left;
+    max-width: 100%;
+}
+#chat-head-text {
+    font-size: 16px;
+    margin: 10px;
+}
+#fixed-text {
+    overflow: hidden;
+    white-space: nowrap;
+}
+#rotating-text {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 20ch;
+}
